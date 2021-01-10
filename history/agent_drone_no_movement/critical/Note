@@ -1,0 +1,31 @@
+Description: MAP controller, bad initial conditions, biased motion, large radio latency, strong noise
+
+scenario: drone can not move
+
+control mode: MAP
+
+initial conditions: 
+	* p0 in [0,30] uniform
+	* c0 in [0.0,0.0] (fixed), h=10
+	* p(p0) in [-50.0,-30.0] gaussian std.dev. 100
+
+agent motion: random walk (0.0,0.0)
+
+RSSI propagation:
+	* no uncertainty
+	* sigma = 3.5
+	* T_RF = 10
+
+PF:
+	* Ns = 300
+	* process model std. dev. = 5
+
+others: 
+	* sim duration = 100
+	* E_tot = 100
+	* K = [1*1.0E-1, 5*1.0E-4,5*1.0E-4, 1*1.0E-0]
+	* f = 100
+	* t_clock = 1/200
+
+
+
